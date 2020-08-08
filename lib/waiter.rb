@@ -38,30 +38,19 @@ class Waiter
     # arr.max_by { |v| freq[v] }
     # #=> 1
 
+    # https://medium.com/better-programming/two-ways-of-finding-the-element-that-occurs-the-most-in-an-array-with-ruby-7fb484ea1a6d
+
     def most_frequent_customer
-        Meal.all.map { |meal| meal.customer }
-        binding.pry
+        customers_instances_array = self.meals.map { |meal| meal.customer}
+        customers_instances_array.max_by { |customer| customers_instances_array.count(customer) }
+        # binding.pry
+    end
+
+    def worst_tipped_meal 
+        worst_tip_instance = Meal.all.min { |meal_a, meal_b| meal_a.tip <=> meal_b.tip }
+        # binding.pry
     end
 
 end
 
-# howard = Customer.new("Howard", 30)
-# daniel = Customer.new("Daniel", 30)
-# terrance = Waiter.new("Terrance", 1)
-# joe = Waiter.new("Joe", 10)
-# esmery = Waiter.new("Esmery", 2)
-# andrew = Waiter.new("Andrew", 3)
 
-# howard.new_meal(terrance, 15, 2)
-# howard.new_meal(joe, 15, 4)
-# howard.new_meal(andrew, 15, 5)
-# howard.new_meal(andrew, 15, 5)
-# howard.new_meal(esmery, 15, 5)
-# howard.new_meal(esmery, 15, 5)
-# daniel.new_meal(terrance, 20, 1)
-# daniel.new_meal(esmery, 15, 3)
-# daniel.new_meal(esmery, 15, 3)
-# daniel.new_meal(esmery, 15, 3)
-# daniel.new_meal(esmery, 15, 3)
-# daniel.new_meal(esmery, 15, 3)
-# daniel.new_meal(esmery, 15, 3)
